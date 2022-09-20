@@ -22,9 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
-SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
+# SECRET_KEY = config('SECRET_KEY')
+# DEBUG = config('DEBUG', default=False, cast=bool)
 
+SECRET_KEY = 'django-insecure-ulnmj(rck&rrm02gww1m4(_-zkiggn@92x5q3g-ly36c@04(fz'
+
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1','10.0.2.2']
 

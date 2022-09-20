@@ -2,5 +2,4 @@
 *.sqlite
 *.pyc
 env/
-.env
 
