@@ -16,7 +16,6 @@ product_router = Router(tags=['Product'])
 
 User = get_user_model()
 
-# eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwayI6IjIiLCJjcmVhdGVkIjoiMjAyMi0wOS0xOSAxODo1OTozMi40NTg5MTYifQ.Qzs4VrBGNPxv5hQYmI6iukOVmIVdiM3Gbl93GUZ58cE
 
 
 @product_router.get('get-all/', response=List[ProductOut], auth=AuthBearer())
