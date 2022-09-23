@@ -18,16 +18,18 @@ import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
-SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
+SECRET_KEY = 'django-insecure-ulnmj(rck&rrm02gww1m4(_-zkiggn@92x5q3g-ly36c@04(fz'
+# DEBUG = config('DEBUG', default=False, cast=bool)
 
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','10.0.2.2','*']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -58,7 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
+
     "corsheaders.middleware.CorsMiddleware",
 ]
 
