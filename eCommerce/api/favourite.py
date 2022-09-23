@@ -82,7 +82,7 @@ def delete_fav(request, id: int):
 
 
 @fav_router.delete('delete-all-favourites/', response={
-    200: List[FavProductOut],
+    200: MessageOut,
     404: MessageOut
 },auth=AuthBearer())
 def delete_all(request):
