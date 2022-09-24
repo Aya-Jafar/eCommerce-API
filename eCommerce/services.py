@@ -14,6 +14,7 @@ def handle_products(all_products,request):
 
 
 def handle_product(product,request):
+    convert_dtypes(product)
     product.__dict__['is_favourite'] = is_favourite(product, request.auth['pk'])
 
 

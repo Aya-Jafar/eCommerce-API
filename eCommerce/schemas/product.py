@@ -42,7 +42,7 @@ class FourOFour(Schema):
 
 
 class ImgOut(Schema):
-    id : int 
+    product_id : int 
     image : str
 
 

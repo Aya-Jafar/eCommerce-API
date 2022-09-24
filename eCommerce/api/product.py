@@ -34,7 +34,7 @@ def get_product_by_id(request, id: int):
     try:
         product = Product.objects.get(id=id)
         handle_product(product, request)
-        return status.HTTP_200_OK, product
+        return status.HTTP_200_OK, product.__dict__
 
     except Product.DoesNotExist:
         return status.HTTP_404_NOT_FOUND, {'message': f'Product with id {id} does not exist'}
@@ -49,7 +49,7 @@ def get_product_by_name(request, name: str):
     try:
         product = Product.objects.get(name=name)
         handle_product(product, request)
-        return status.HTTP_200_OK, product
+        return status.HTTP_200_OK, product.__dict__
     except Product.DoesNotExist:
         return status.HTTP_404_NOT_FOUND, {'message': f'{name} product does not exist'}
 
@@ -111,7 +111,7 @@ def filter_pc(request):
     200: List[ProductOut],
     404: FourOFour
 }, auth=AuthBearer())
-def filter_trening_products(request):
+def filter_trending_products(request):
     trending_products = Product.objects.order_by(
         '-id').filter(is_trending_now=True)
     if trending_products:
