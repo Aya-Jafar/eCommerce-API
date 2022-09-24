@@ -19,13 +19,14 @@ class Product(Schema):
     catogary : str
     brand : str 
     rate : float
-    colors : List[ProductColorOut]  = []
-    rams_and_storage : List[ProductRamStorage] = []
+    colors : List[str]
+    rams_and_storage : List[str] 
     cpu : str 
     system : str
     is_best_selling : bool 
     is_trending_now : bool
-    product_images : List['ImgOut'] = []
+    product_images : List[str] 
+
 
 
 class ProductOut(Product):
