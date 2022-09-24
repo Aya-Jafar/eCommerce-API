@@ -19,14 +19,13 @@ class Product(Schema):
     catogary : str
     brand : str 
     rate : float
-    colors : List[str]
-    rams_and_storage : List[str] 
+    colors : List[str] 
+    rams_and_storage : List[str]  
     cpu : str 
     system : str
     is_best_selling : bool 
     is_trending_now : bool
-    product_images : List[str] 
-
+    product_images : List[str]  
 
 
 class ProductOut(Product):
@@ -34,7 +33,9 @@ class ProductOut(Product):
 
 
 class FavProductOut(Schema):
-    product : Product 
+    product_id : int
+    
+    
 
 class FourOFour(Schema):
     message : str

@@ -31,10 +31,10 @@ def is_favourite(product,user_id):
 
 
 def convert_dtypes(product):
-    product.__dict__['colors'] = [ i.name for i in product.colors.all()]
-    product.__dict__['rams_and_storage'] = [ i.name for i in product.rams_and_storage.all()]
+    product.__dict__['colors'] = [ i.name for i in product.colors.all() ]
+    product.__dict__['rams_and_storage'] = [ i.name for i in product.rams_and_storage.all() ]
+    product.__dict__['product_images'] = [ str(i.image) for i in product.product_images.all() ]
 
-    product.__dict__['product_images'] = [ str(i.image) for i in product.product_images.all()]
 
     # print(product.__dict__['product_images'])
 

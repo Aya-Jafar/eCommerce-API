@@ -11,7 +11,7 @@ class OrderItemOut(Schema):
 
 class ItemsOut(Schema):
     id : int
-    product: Product
+    # product: Product
     # order : OrderItemOut
     quantity : int
 

@@ -24,6 +24,7 @@ def get_items_in_card(request):
             id=request.auth['pk']), is_ordered=False)
         if items:
             return status.HTTP_200_OK, items
+            
         return status.HTTP_404_NOT_FOUND, {'message': 'Card is empty'}
 
     except Order.DoesNotExist:

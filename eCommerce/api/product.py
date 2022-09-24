@@ -6,6 +6,7 @@ from rest_framework import status
 from eCommerce.schemas.product import ProductOut, FourOFour, ImgOut
 from ..models import Item, Order, Product, ProductImage
 from ..choices import ProductBrand, ProductCatogary
+from eCommerce.schemas.product import Product as ProductSchema
 from typing import List
 from ninja import Router
 from ..services import handle_product, handle_products
@@ -34,8 +35,10 @@ def get_product_by_id(request, id: int):
         product = Product.objects.get(id=id)
         handle_product(product, request)
         return status.HTTP_200_OK, product
+
     except Product.DoesNotExist:
         return status.HTTP_404_NOT_FOUND, {'message': f'Product with id {id} does not exist'}
+
 
 
 @product_router.get('get-product-by-name/', response={

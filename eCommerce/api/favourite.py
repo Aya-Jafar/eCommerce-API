@@ -1,3 +1,4 @@
+from eCommerce.services import handle_products
 from typing import List
 from django.contrib.auth import get_user_model
 from eCommerce.schemas.product import FavProductOut
@@ -23,6 +24,8 @@ def favourite_products(request):
 
     fav_products = Favorite.objects.select_related('user', 'product').filter(
         user=User.objects.get(id=request.auth['pk']))
+
+    # print(fav_products)
         
     if fav_products:
         return status.HTTP_200_OK, fav_products
