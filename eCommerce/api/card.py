@@ -21,7 +21,7 @@ def view_cart(request):
     try:
         cart_items = Order.objects.get(
             owner__id=request.auth['pk'], is_ordered=False)
-
+        
         if cart_items:
             return status.HTTP_200_OK, cart_items
 

@@ -26,17 +26,18 @@ class Product(Schema):
     is_best_selling : bool 
     is_trending_now : bool
     product_images : List[str]  
-
+ 
 
 class ProductOut(Product):
     is_favourite : bool
 
 
-class FavProductOut(Schema):
-    product_id : int
+class FavProductOut(Product):
+    # product : Product
+    # product_id : int
+    pass
     
     
-
 class FourOFour(Schema):
     message : str
 

@@ -1,3 +1,4 @@
+from eCommerce.services import convert_dtypes, handle_fav_products, handle_items
 from restauth.authorization import AuthBearer
 from django.contrib.auth import get_user_model
 from eCommerce.schemas.cart import MessageOut, TotalCardOut
@@ -22,8 +23,9 @@ def get_items_in_card(request):
     try:
         items = Item.objects.select_related('product', 'user').filter(user=User.objects.get(
             id=request.auth['pk']), is_ordered=False)
+        
         if items:
-            return status.HTTP_200_OK, items
+            return status.HTTP_200_OK, handle_items(items)
             
         return status.HTTP_404_NOT_FOUND, {'message': 'Card is empty'}
 
