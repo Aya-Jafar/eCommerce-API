@@ -33,11 +33,10 @@ class ProductOut(Product):
 
 
 class FavProductOut(Product):
+    # fav_id : int
     # product : Product
-    # product_id : int
     pass
-    
-    
+
 class FourOFour(Schema):
     message : str
 

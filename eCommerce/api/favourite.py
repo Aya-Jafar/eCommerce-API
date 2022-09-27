@@ -1,4 +1,4 @@
-from eCommerce.services import  handle_fav_products, handle_products
+from eCommerce.services import  handle_related_objects
 from typing import List
 from django.contrib.auth import get_user_model
 from eCommerce.schemas.product import FavProductOut
@@ -26,7 +26,7 @@ def favourite_products(request):
         user=User.objects.get(id=request.auth['pk']))
     
     if fav_products:
-        return status.HTTP_200_OK, handle_fav_products(fav_products)
+        return status.HTTP_200_OK, handle_related_objects(fav_products)
 
     return status.HTTP_404_NOT_FOUND, {'detail': 'No favourite products found'}
 

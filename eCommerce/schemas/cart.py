@@ -15,9 +15,9 @@ class TotalCardOut(Schema):
 class CartOut(Schema):
     id : int
     owner : AccountOut
-    # status : str  
     items: List[ItemOutForCard]
     # total : float
+    # quantity : int
 
 
 class CardQntOut(Schema):

@@ -11,13 +11,13 @@ class OrderItemOut(Schema):
 
 
 class ItemsOut(Product):
-    # product:Product
-    id : int
+    # item_id : int
+    # product: Product
     quantity : int
+    total : float
 
 
 class ItemIn(Schema):
     product_id : int
     quantity : int 
-
 
