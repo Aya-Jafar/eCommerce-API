@@ -20,7 +20,6 @@ def is_favourite(product, user_id):
     return is_favourite
 
 
-
 def handle_products(all_products, request):
     result = []
     for product in all_products:
@@ -43,29 +42,44 @@ def convert_dtypes(product):
     product.__dict__['product_images'] = list(product.product_images.values_list('image', flat=True))
 
 
-
 def handle_related_objects(related_objects):
     result = []
+
+    # print(related_objects[0].product.id)
+
     for i in related_objects:
         convert_dtypes(i.product)
-        i.product.__dict__['id'] = i.id
-        result.append(i.product.__dict__)
+        if type(i) is Item:
+            result.append({
+                'id': i.id,
+                'total': i.get_item_total,
+                'quantity': i.quantity,
+                'product': i.product.__dict__,
+            })
+        else:
+            result.append({
+                'id': i.id,
+                'product': i.product.__dict__,
+            })
 
-        if type(related_objects[0]) is Item:
-            i.product.__dict__['quantity'] = i.quantity
-            i.product.__dict__['total'] = i.get_item_total
-
-
-        # i.product.__dict__['product'] = i.product.__dict__
-        # result.append(i.product.__dict__['product'])
         # convert_dtypes(i.product)
-        
         # if type(related_objects[0]) is Item:
-        #     i.product.__dict__['item_id'] = i.id 
-        #     i.product.__dict__['quantity'] = i.quantity
-        #     i.product.__dict__['total'] = i.get_item_total
-
-        # elif type(related_objects[0]) is Favorite:   
-        #     i.product.__dict__['fav_id'] = i.id
+        #     result.append({
+        #         **i.product.__dict__,
+        #         **{
+        #             'id': i.id,
+        #             'total': i.get_item_total,
+        #             'quantity': i.quantity,
+        #         }
+        #     })
+        # else:
+        #     result.append({
+        #         ** i.product.__dict__,
+        #         **{
+        #             'id': i.id,
+        #         }
+        #     })
+    # print(related_objects[0].product.id)
+    # print(related_objects[0].product.__dict__)
 
     return result

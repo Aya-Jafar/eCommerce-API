@@ -10,11 +10,12 @@ class OrderItemOut(Schema):
     status : str
 
 
-class ItemsOut(Product):
-    # item_id : int
-    # product: Product
+class ItemsOut(Schema):
+    id : int
     quantity : int
     total : float
+    product: Product
+  
 
 
 class ItemIn(Schema):

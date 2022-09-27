@@ -27,15 +27,15 @@ class Product(Schema):
     is_trending_now : bool
     product_images : List[str]  
  
-
+ 
 class ProductOut(Product):
     is_favourite : bool
 
 
-class FavProductOut(Product):
-    # fav_id : int
-    # product : Product
-    pass
+class FavProductOut(Schema):
+    id : int
+    product : Product
+
 
 class FourOFour(Schema):
     message : str
