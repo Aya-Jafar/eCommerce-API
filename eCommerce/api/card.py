@@ -1,3 +1,4 @@
+from eCommerce.services import handle_related_objects
 from restauth.authorization import AuthBearer
 from eCommerce.schemas.item import ItemIn
 from django.contrib.auth import get_user_model
@@ -21,9 +22,14 @@ def view_cart(request):
     try:
         cart_items = Order.objects.get(
             owner__id=request.auth['pk'], is_ordered=False)
-        
+
         if cart_items:
-            return status.HTTP_200_OK, cart_items
+            return status.HTTP_200_OK, {
+                'id': cart_items.id,
+                'cart_total': cart_items.get_cart_total,
+                'cart_quantity': cart_items.get_cart_quantity,
+                'items': handle_related_objects(cart_items.items.all())
+            }
 
     except Order.DoesNotExist:
         return status.HTTP_404_NOT_FOUND, {'detail': 'Your cart is empty'}

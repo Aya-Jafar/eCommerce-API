@@ -1,3 +1,4 @@
+from eCommerce.schemas.item import ItemsOut
 from ninja import Schema
 from restauth.schemas import AccountOut
 from typing import List
@@ -14,10 +15,10 @@ class TotalCardOut(Schema):
 
 class CartOut(Schema):
     id : int
-    owner : AccountOut
-    items: List[ItemOutForCard]
-    # total : float
-    # quantity : int
+    cart_total : float
+    cart_quantity : int
+    items: List[ItemsOut]
+
 
 
 class CardQntOut(Schema):
@@ -25,7 +26,11 @@ class CardQntOut(Schema):
 
 
 class MessageOut(Schema):
-    detail:str
+    detail:str 
+ 
 
 class OrderIn(Schema):
     items: List[int] 
+
+
+CartOut.update_forward_refs()
