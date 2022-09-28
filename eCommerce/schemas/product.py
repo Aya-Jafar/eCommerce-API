@@ -1,3 +1,4 @@
+from eCommerce.services import is_favourite
 from ninja import Schema
 from typing import List
 
@@ -29,8 +30,8 @@ class Product(Schema):
  
  
 class ProductOut(Product):
-    is_favourite : bool
-
+    # is_favourite : bool
+    pass  
 
 class FavProductOut(Schema):
     id : int
