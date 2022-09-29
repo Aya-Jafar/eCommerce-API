@@ -33,7 +33,6 @@ def get_items_in_card(request):
         return status.HTTP_404_NOT_FOUND, {'message': 'Card does not exist'}
 
 
-
 @item_router.get('get-item-total/', response={
     200: TotalCardOut,
     404: FourOFour

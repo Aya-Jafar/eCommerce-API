@@ -28,10 +28,9 @@ class Product(Schema):
     is_trending_now : bool
     product_images : List[str]  
  
- 
 class ProductOut(Product):
     # is_favourite : bool
-    pass  
+    pass 
 
 class FavProductOut(Schema):
     id : int

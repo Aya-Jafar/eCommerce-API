@@ -29,7 +29,7 @@ def view_cart(request):
                 'cart_total': cart_items.get_cart_total,
                 'cart_quantity': cart_items.get_cart_quantity,
                 'items': handle_related_objects(cart_items.items.all())
-            }
+            } 
 
     except Order.DoesNotExist:
         return status.HTTP_404_NOT_FOUND, {'detail': 'Your cart is empty'}

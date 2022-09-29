@@ -1,6 +1,6 @@
 from typing import Dict, List
 from pydantic.networks import EmailStr
-from .product import Product
+from .product import Product, ProductOut
 from ninja import Schema
 
 
@@ -14,7 +14,7 @@ class ItemsOut(Schema):
     id : int
     quantity : int
     total : float
-    product: Product
+    product: ProductOut
   
 
 

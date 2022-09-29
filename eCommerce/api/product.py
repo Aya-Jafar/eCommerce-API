@@ -9,7 +9,7 @@ from ..choices import ProductBrand, ProductCatogary
 from eCommerce.schemas.product import Product as ProductSchema
 from typing import List
 from ninja import Router
-from ..services import handle_product, handle_products
+from ..services import convert_dtypes,  handle_products
 
 
 product_router = Router(tags=['Product'])
@@ -33,7 +33,7 @@ def get_all_products(request):
 def get_product_by_id(request, id: int):
     try:
         product = Product.objects.get(id=id)
-        handle_product(product, request)
+        convert_dtypes(product)
         return status.HTTP_200_OK, product.__dict__
 
     except Product.DoesNotExist:
@@ -48,7 +48,7 @@ def get_product_by_id(request, id: int):
 def get_product_by_name(request, name: str):
     try:
         product = Product.objects.get(name=name)
-        handle_product(product, request)
+        convert_dtypes(product)
         return status.HTTP_200_OK, product.__dict__
     except Product.DoesNotExist:
         return status.HTTP_404_NOT_FOUND, {'message': f'{name} product does not exist'}
@@ -152,10 +152,6 @@ def filter_by_brand(request, to_filter_by: str):
     404: FourOFour
 }, auth=AuthBearer())
 def filter_by_price(request, min: int, max: int):
-    # created= datetime.strptime(request.auth['created'], '%Y-%m-%d %H:%M:%S.')
-    # if (datetime.datetime.now() - created <7) :
-    #     return status.HTTP_404_NOT_FOUND, {'detail':'Not authorized'}
-
     filtered = Product.objects.filter(price__in=range(min, max+1))
     if filtered:
         filtered = handle_products(filtered, request)
@@ -173,19 +169,19 @@ def filter_by_price(request, min: int, max: int):
 #     item = Item.objects.create(
 #         is_ordered=True,
 #         quantity=1,
-#         product__id=product_id, 
-#         user__id=request.auth['pk']
+#         product=Product.objects.get(id=product_id), 
+#         user=User.objects.get(id=request.auth['pk'])
 #     )
 #     try:
-#         order = Order.objects.get(is_order=True, owner__id=request.auth['pk'])
+#         order = Order.objects.get(is_ordered=True, owner__id=request.auth['pk'])
 #         order.items.add(item)
-#         return status.HTTP_200_OK,{'message':''}
+#         return status.HTTP_200_OK,{'message':'Product is ordered successfully'}
 
 #     except Order.DoesNotExist:
 #         order = Order.objects.create(
 #             is_ordered=True, owner__id=request.auth['pk'])
 #         order.items.add(item)
-#         return status.HTTP_200_OK,{'message':''}
+#         return status.HTTP_200_OK,{'message':'Product is ordered successfully'}
 
 
 
