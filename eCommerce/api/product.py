@@ -160,30 +160,6 @@ def filter_by_price(request, min: int, max: int):
     return status.HTTP_404_NOT_FOUND, {'message': f'No products found with price range {min} - {max}'}
 
 
-# @product_router.post('buy-now/', response={
-#     200:FourOFour,
-#     404: FourOFour
-# },auth=AuthBearer())
-# def buy_now(request, product_id: int):
-
-#     item = Item.objects.create(
-#         is_ordered=True,
-#         quantity=1,
-#         product=Product.objects.get(id=product_id), 
-#         user=User.objects.get(id=request.auth['pk'])
-#     )
-#     try:
-#         order = Order.objects.get(is_ordered=True, owner__id=request.auth['pk'])
-#         order.items.add(item)
-#         return status.HTTP_200_OK,{'message':'Product is ordered successfully'}
-
-#     except Order.DoesNotExist:
-#         order = Order.objects.create(
-#             is_ordered=True, owner__id=request.auth['pk'])
-#         order.items.add(item)
-#         return status.HTTP_200_OK,{'message':'Product is ordered successfully'}
-
-
 
 @product_router.get('product-images/', response=List[ImgOut], auth=AuthBearer())
 def get_product_images(request):

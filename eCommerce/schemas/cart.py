@@ -2,11 +2,6 @@ from eCommerce.schemas.item import ItemsOut
 from ninja import Schema
 from restauth.schemas import AccountOut
 from typing import List
-# from .product import ProductOut
-
-class ItemOutForCard(Schema):
-    product_id : int
-    quantity : int
 
 
 class TotalCardOut(Schema):

@@ -24,16 +24,15 @@ def handle_products(all_products, request):
     result = []
     for product in all_products:
         convert_dtypes(product)
+        # product.__dict__['is_favourite'] = is_favourite(product, request.auth['pk'])
         result.append(product.__dict__)
     return result
-
 
 
 def convert_dtypes(product):
     product.__dict__['colors'] = list(product.colors.values_list('name', flat=True))
     product.__dict__['rams_and_storage'] = list(product.rams_and_storage.values_list('name', flat=True))
     product.__dict__['product_images'] = list(product.product_images.values_list('image', flat=True))
-
 
 
 def handle_related_objects(related_objects):

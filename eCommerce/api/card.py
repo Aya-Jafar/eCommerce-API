@@ -121,15 +121,6 @@ def add_to_card(request, item_in: ItemIn):
 
         except Order.DoesNotExist:
             res = create_update_order(request)
-            # order = Order.objects.create(
-            #     owner=User.objects.get(id=request.auth['pk']), status='Order Taken', is_ordered=False
-            # )
-            # item = Item.objects.create(
-            #     **item_in.dict(),
-            #     is_ordered=False,
-            #     user=User.objects.get(id=request.auth['pk'])
-            # )
-            # order.items.add(item)
             return res
 
 
